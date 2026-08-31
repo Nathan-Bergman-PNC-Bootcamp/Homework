@@ -63,7 +63,7 @@ if let amount = parsedAmount {
     print("Parsed amount: \(amount)")
 } else {
     print("Invalid input")
-
+}
 
 //Excercise 4
 
