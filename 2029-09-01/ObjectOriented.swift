@@ -62,7 +62,7 @@ print("t3 description:", t3.description)
 //3d
 t2.markAsPending()
 
-print("ts pending:", t2.isPending)
+print("t2 pending:", t2.isPending)
 
 //4a
 
@@ -90,6 +90,7 @@ class BankAccount {
         }
     }
     
+    @discardableResult
     func withdraw(amount: Double) -> Bool {
         if amount > 0 && amount <= balance {
             balance -= amount
@@ -100,14 +101,8 @@ class BankAccount {
     }
     
     func printSummary() {
-        print(
-            String(
-                format: "Account %@ | Owner: %@ | Balance: $%.2f",
-                accountNumber,
-                owner,
-                balance
-            )
-        )
+        let formattedBalance = String(format: "%.2f", balance)
+        print("Account \(accountNumber) | Owner: \(owner) | Balance: $\(formattedBalance)")
     }
 }
 
@@ -140,7 +135,7 @@ checkingRef.deposit(amount: 500)
 print("checking balance:", checking.balance)
 print("checkingRef balance:", checkingRef.balance)
 
-//both show the same balance, checkingRef and checking point point to the same object BankAccount 
+//both show the same balance, checkingRef and checking point point to the same object BankAccount
 
 //4d
 class PremiumBankAccount: BankAccount {
@@ -191,7 +186,7 @@ let withdrawal2 = premium.withdraw(amount: 800)
 print("Withdraw $800:", withdrawal2)
 print("Balance:", premium.balance)
 
-//5a 
+//5a
 enum TransactionType: String, CaseIterable {
     case credit
     case debit
@@ -270,5 +265,5 @@ print(describeError(.invalidAmount))
 //5d
 
 for type in TransactionType.allCases {
-    print("\(type.rawValue) → \"\(type.rawValue)\"")
+    print("\(type.rawValue) -> \"\(type.rawValue)\"")
 }
